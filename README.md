@@ -9,7 +9,7 @@ Keen IO Middleware for Beego Framework. The [Keen IO](https://keen.io/) API lets
 Standard `go get`:
 
 ```
-$ go get github.com/totalcast/beego_keenio
+$ go get github.com/pabdavis/beego_keenio
 ```
 
 #### Dependencies
@@ -38,7 +38,7 @@ Add the following lines into the ```routers/routers.go``` file which will initia
 
 
 ```go
- import "github.com/totalcast/beego_keenio"
+ import "github.com/pabdavis/beego_keenio"
  
  func init() {
     beego_keenio.InitKeenioFilter()
