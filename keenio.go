@@ -128,7 +128,7 @@ func InitKeenioFilter() {
 	sender = keengo.NewSender(projectId, writeKey)
 
 	beego.InsertFilter("*", beego.BeforeRouter, InitKeenioQueue)
-	beego.InsertFilter("*", beego.FinishRouter, ProcessKeenioQueue)
+	beego.InsertFilter("*", beego.FinishRouter, ProcessKeenioQueue, false)
 
 	beego.Info("Keenio filter initialized")
 }
