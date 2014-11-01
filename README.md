@@ -1,10 +1,9 @@
-Keen IO Middleware for Beego Framework
-======================================
+## KeenIO middleware for Beego framework
 
-Keen IO Middleware for Beego Framework. The [Keen IO](https://keen.io/) API lets developers build analytics features directly into their apps.
+[![Codeship Status for pabdavis/beego_keenio](https://codeship.io/projects/88b34820-14f0-0132-a142-66789f1cb1b5/status?branch=master)](https://codeship.io/projects/33558) 
+[![GoDoc](https://godoc.org/github.com/pabdavis/beego_keenio?status.svg)](https://godoc.org/github.com/pabdavis/beego_keenio)
 
-[ ![Codeship Status for pabdavis/beego_keenio](https://codeship.io/projects/88b34820-14f0-0132-a142-66789f1cb1b5/status?branch=master)](https://codeship.io/projects/33558)
-
+Keen IO middleware for Beego framework. The [Keen IO](https://keen.io/) API lets developers build analytics features directly into their apps.
 
 ### Installation
 
