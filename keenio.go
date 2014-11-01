@@ -1,3 +1,8 @@
+// Copyright (c) 2014 Bill Davis. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
+// Package beego_keenio implements a middleware to KeenIO from the beego framework.
 package beego_keenio
 
 import (
@@ -9,12 +14,14 @@ import (
 	"github.com/philpearl/keengo"
 )
 
+// KEENIO_QUEUE_KEY constant to identify the context key in the request
 const (
 	KEENIO_QUEUE_KEY = "keenio_queue"
 )
 
 var sender *keengo.Sender
 
+// keenioQueue interface for queue
 type keenioQueue interface {
 	Len() int
 	Push()
@@ -27,7 +34,7 @@ type keenioEvent struct {
 	next       *keenioEvent
 }
 
-//	FIFO data stucture
+//	KeenioQueue is FIFO data stucture
 type KeenioQueue struct {
 	head  *keenioEvent
 	tail  *keenioEvent
@@ -42,14 +49,14 @@ func newKeenioQueue() *KeenioQueue {
 	return q
 }
 
-//	Returns the number of events in the queue
+// Len returns the number of events in the queue
 func (q *KeenioQueue) Len() int {
 	q.lock.Lock()
 	defer q.lock.Unlock()
 	return q.count
 }
 
-//	Pushes event to the end of the queue
+// Push adds event to the end of the queue
 func (q *KeenioQueue) Push(collection string, item interface{}) {
 	q.lock.Lock()
 	defer q.lock.Unlock()
@@ -66,7 +73,7 @@ func (q *KeenioQueue) Push(collection string, item interface{}) {
 	q.count++
 }
 
-//	Returns event from the top of the queue
+// Pop returns event from the top of the queue
 func (q *KeenioQueue) Pop() (string, interface{}) {
 	q.lock.Lock()
 	defer q.lock.Unlock()
@@ -86,13 +93,13 @@ func (q *KeenioQueue) Pop() (string, interface{}) {
 	return n.collection, n.data
 }
 
-// Initialize the queue structure for this request
+// InitKeenioQueue initialize the queue structure for this request
 func InitKeenioQueue(ctx *context.Context) {
 	q := newKeenioQueue()
 	ctx.Input.SetData(KEENIO_QUEUE_KEY, *q)
 }
 
-// Process the q structure for this request
+// ProcessKeenioQueue iterates the queue structure for this request
 func ProcessKeenioQueue(ctx *context.Context) {
 
 	if q, ok := ctx.Input.GetData(KEENIO_QUEUE_KEY).(KeenioQueue); ok {
@@ -106,7 +113,7 @@ func ProcessKeenioQueue(ctx *context.Context) {
 	}
 }
 
-// Initialize the sender in a go-routine
+// InitKeenioFilter initializes the keengo sender in a go-routine
 func InitKeenioFilter() {
 
 	// validate the necessary configuration
