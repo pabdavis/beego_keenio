@@ -20,6 +20,8 @@ $ go get github.com/pabdavis/beego_keenio
   go get github.com/philpearl/keengo
 ```
 
+beego v1.4.2+
+
 ### Usage
 
 To use this beego middleware with the Keen IO API, you have to configure your Keen IO Project ID and its write access key (if you need an account, [sign up here](https://keen.io/) - it's free).
